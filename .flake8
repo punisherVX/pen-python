@@ -1,0 +1,29 @@
+[flake8]
+# Changed this from 119.  Gives some leeway since CI fails if its greater than this
+max-line-length = 121
+# Ignore these particular items to save some time:
+# E231: missing whitespace after ","
+# E701: multiple statements on one line (colon)
+# F541: f-string is missing placeholders
+# F812: list comprehension redefines ...
+# H101: Use TODO(NAME)
+# H202: assertRaises Exception too broad
+# H233: Python 3.x incompatible use of print operator
+# H301: one import per line
+# H306: imports not in alphabetical order (time, os)
+# H401: docstring should not start with a space
+# H403: multi line docstrings should end on a new line
+# H404: multi line docstring should start without a leading new line
+# H405: multi line docstring summary not separated with an empty line
+# H501: Do not use self.__dict__ for string formatting
+ignore = E231,E701,F403,F541,F812,H101,H202,H233,H301,H306,H401,H403,H404,H405,H501
+# The init files will usually import things but never use them.  Get rid of that
+# error only for init files.
+per-file-ignores =
+    __init__.py:F401
+# Things we don't want to scan
+exclude =
+    .tox,
+    __pycache__
+# Check docstrings too
+doctests = True
